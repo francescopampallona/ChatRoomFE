@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth';
 import { RegisterRequest } from '../../dto/RegisterRequest';
 import { AuthResponse } from '../../dto/AuthResponse';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
@@ -24,7 +25,7 @@ export class RegisterComponent {
   errorMessage = '';
   loading = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,  private router: Router) {}
 
   register(): void {
 
@@ -47,6 +48,10 @@ export class RegisterComponent {
           email: '',
           password: ''
         };
+        
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user',JSON.stringify(response.user));
+        this.router.navigate(['/home']);
       },
 
       error: (error) => {

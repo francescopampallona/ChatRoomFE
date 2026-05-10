@@ -1,0 +1,40 @@
+.home-container {
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(
+    135deg,
+    #1e293b,
+    #0f172a
+  );
+}
+
+.home-card {
+
+  background: white;
+
+  padding: 50px;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.2);
+
+  text-align: center;
+}
+
+h1 {
+
+  margin-bottom: 20px;
+
+  color: #0f172a;
+}
+
+p {
+
+  color: #64748b;
+}
