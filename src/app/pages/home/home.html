@@ -1,13 +1,55 @@
 <div class="home-container">
-
   <div class="home-card">
 
-    <h1>Benvenuto in ChatRoom</h1>
+    <h1>Benvenuto {{ username }}</h1>
 
-    <p>
-      Login effettuato correttamente.
+    <p class="subtitle">
+      Gestisci le tue chat room
     </p>
 
-  </div>
+    <button class="create-room-button" (click)="goToCreateRoom()">
+      + Crea una room
+    </button>
 
+    <p class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+
+    <p *ngIf="loading">
+      Caricamento room...
+    </p>
+
+    <section class="rooms-section">
+      <h2>Le tue room</h2>
+
+      <div class="empty-state" *ngIf="!loading && myRooms.length === 0">
+        <p>Non sei ancora membro di nessuna room.</p>
+      </div>
+
+      <div class="room-list" *ngIf="myRooms.length > 0">
+        <div class="room-card" *ngFor="let room of myRooms">
+          <h3>{{ room.name }}</h3>
+          <p>{{ room.description || 'Nessuna descrizione' }}</p>
+          <span>{{ room.type }}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="rooms-section">
+      <h2>Room pubbliche</h2>
+
+      <div class="empty-state" *ngIf="!loading && publicRooms.length === 0">
+        <p>Non ci sono room pubbliche disponibili.</p>
+      </div>
+
+      <div class="room-list" *ngIf="publicRooms.length > 0">
+        <div class="room-card" *ngFor="let room of publicRooms">
+          <h3>{{ room.name }}</h3>
+          <p>{{ room.description || 'Nessuna descrizione' }}</p>
+          <span>{{ room.ownerUsername }}</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
 </div>
