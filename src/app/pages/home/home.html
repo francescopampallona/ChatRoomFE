@@ -28,9 +28,36 @@
 
       <div class="room-list" *ngIf="myRooms.length > 0">
         <div class="room-card" *ngFor="let room of myRooms">
+
           <h3>{{ room.name }}</h3>
-          <p>{{ room.description || 'Nessuna descrizione' }}</p>
-          <span>{{ room.type }}</span>
+
+          <p>
+            {{ room.description || 'Nessuna descrizione' }}
+          </p>
+
+          <span class="room-type">
+            {{ room.type }}
+          </span>
+
+          <span class="room-owner">
+            Creata da {{ room.ownerUsername }}
+          </span>
+
+          <button
+            *ngIf="!isOwner(room)"
+            class="leave-room-button"
+            (click)="leaveRoom(room.id)"
+          >
+            Esci
+          </button>
+
+          <span
+            *ngIf="isOwner(room)"
+            class="owner-badge"
+          >
+            👑 Proprietario
+          </span>
+
         </div>
       </div>
     </section>
@@ -44,9 +71,40 @@
 
       <div class="room-list" *ngIf="publicRooms.length > 0">
         <div class="room-card" *ngFor="let room of publicRooms">
+
           <h3>{{ room.name }}</h3>
-          <p>{{ room.description || 'Nessuna descrizione' }}</p>
-          <span>{{ room.ownerUsername }}</span>
+
+          <p>
+            {{ room.description || 'Nessuna descrizione' }}
+          </p>
+
+          <span class="room-owner">
+            Creata da {{ room.ownerUsername }}
+          </span>
+
+          <button
+            *ngIf="!isMyRoom(room.id)"
+            class="join-room-button"
+            (click)="joinRoom(room.id)"
+          >
+            Entra
+          </button>
+
+          <button
+            *ngIf="isMyRoom(room.id) && !isOwner(room)"
+            class="leave-room-button"
+            (click)="leaveRoom(room.id)"
+          >
+            Esci
+          </button>
+
+          <span
+            *ngIf="isOwner(room)"
+            class="owner-badge"
+          >
+            👑 Proprietario
+          </span>
+
         </div>
       </div>
     </section>

@@ -38,4 +38,18 @@ getRoomById(id: number): Observable<RoomDto> {
     `${this.apiUrl}/api/room/${id}`
   );
 }
+
+joinPublicRoom(roomId: number): Observable<RoomDto> {
+  return this.http.post<RoomDto>(
+    `${this.apiUrl}/api/room/${roomId}/join`,
+    {}
+  );
+}
+
+leaveRoom(roomId: number): Observable<void> {
+  return this.http.delete<void>(
+    `${this.apiUrl}/api/room/${roomId}/leave`
+  );
+}
+
 }

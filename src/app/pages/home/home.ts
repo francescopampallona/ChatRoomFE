@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RoomService } from '../../services/room';
 import { RoomDto } from '../../dto/RoomDto';
 import { CommonModule } from '@angular/common';
+import { UserDto } from '../../dto/UserDto';
 
 @Component({
   selector: 'app-home',
@@ -22,16 +23,20 @@ export class HomeComponent {
   loading = false;
   errorMessage = '';
 
+  currentUser!: UserDto;
+
 
   ngOnInit(): void {
-
+    
     const userString = localStorage.getItem('user');
 
-    if (userString) {
 
-      const user = JSON.parse(userString);
+    if (userString){
+      
+      this.currentUser = JSON.parse(userString);
 
-      this.username = user.username;
+
+      this.username = this.currentUser.username;
     }
     this.loadRooms();
   }
@@ -64,6 +69,46 @@ loadPublicRooms(): void {
     error: () => {
       this.errorMessage = 'Errore nel caricamento delle room pubbliche';
       this.loading = false;
+    }
+  });
+}
+
+joinRoom(roomId: number): void {
+  this.loading = true;
+  this.errorMessage = '';
+
+  this.roomService.joinPublicRoom(roomId).subscribe({
+    next: () => {
+      this.loadRooms();
+    },
+    error: (error) => {
+      this.loading = false;
+      this.errorMessage =
+        error.error?.message || 'Errore durante l’ingresso nella room';
+    }
+  });
+}
+
+isMyRoom(roomId: number): boolean {
+  return this.myRooms.some(room => room.id === roomId);
+}
+
+isOwner(room: RoomDto): boolean {
+  return room.ownerId === this.currentUser.id;
+}
+
+leaveRoom(roomId: number): void {
+  this.loading = true;
+  this.errorMessage = '';
+
+  this.roomService.leaveRoom(roomId).subscribe({
+    next: () => {
+      this.loadRooms();
+    },
+    error: (error) => {
+      this.loading = false;
+      this.errorMessage =
+        error.error?.message || 'Errore durante l’uscita dalla room';
     }
   });
 }
