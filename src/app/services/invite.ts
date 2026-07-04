@@ -19,4 +19,17 @@ export class InviteService {
       request
     );
   }
+
+getMyInvites(): Observable<InviteResponse[]> {
+  return this.http.get<InviteResponse[]>(
+    `${this.apiUrl}/api/invite/my`
+  );
+}
+
+acceptInvite(inviteId: number): Observable<InviteResponse> {
+  return this.http.post<InviteResponse>(
+    `${this.apiUrl}/api/invite/${inviteId}/accept`,
+    {}
+  );
+}
 }
