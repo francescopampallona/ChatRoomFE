@@ -57,6 +57,9 @@
           >
             👑 Proprietario
           </span>
+          <button  *ngIf="isOwner(room) && room.type=='PRIVATE'" class="invite-room-button" (click)="goToInvite(room.id)">
+            Invita utente
+          </button>
 
         </div>
       </div>

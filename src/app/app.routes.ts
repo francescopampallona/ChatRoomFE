@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login';
 import { HomeComponent } from './pages/home/home';
 import { authGuard } from './guards/auth-guard';
 import { CreateRoomComponent } from './pages/create-room/create-room';
+import { InviteUserComponent } from './pages/invite-user/invite-user';
 
 export const routes: Routes = [
   {
@@ -23,7 +24,12 @@ export const routes: Routes = [
   path: 'rooms/create',
   component: CreateRoomComponent,
   canActivate: [authGuard]
-  }, 
+  },
+  {
+   path: 'rooms/:roomId/invite',
+   component: InviteUserComponent,
+   canActivate: [authGuard]
+  },
   {
     path: '',
     redirectTo: 'login',

@@ -113,5 +113,9 @@ leaveRoom(roomId: number): void {
   });
 }
 
+goToInvite(roomId: number): void {
+  this.router.navigate(['/rooms', roomId, 'invite']);
+}
+
 
 }

@@ -167,3 +167,33 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
+.invite-room-button {
+  margin-top: 14px;
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 18px rgba(79, 70, 229, 0.25);
+
+  transition: all 0.2s ease;
+}
+
+.invite-room-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(79, 70, 229, 0.35);
+}
+
+.invite-room-button:active {
+  transform: scale(0.98);
+}
