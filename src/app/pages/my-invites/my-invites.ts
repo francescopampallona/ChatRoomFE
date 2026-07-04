@@ -61,6 +61,26 @@ export class MyInvitesComponent {
     });
   }
 
+  declineInvite(inviteId: number): void {
+  this.successMessage = '';
+  this.errorMessage = '';
+
+  this.inviteService.declineInvite(inviteId).subscribe({
+    next: () => {
+      this.successMessage = 'Invito rifiutato';
+      this.invites = this.invites.filter(invite => invite.id !== inviteId);
+    },
+    error: (error) => {
+      if (typeof error.error === 'string') {
+        this.errorMessage = error.error;
+      } else {
+        this.errorMessage =
+          error.error?.message || 'Errore durante il rifiuto dell’invito';
+      }
+    }
+  });
+}
+
   goHome(): void {
   this.router.navigate(['/home']);
 }

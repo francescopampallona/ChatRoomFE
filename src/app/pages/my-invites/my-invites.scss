@@ -121,3 +121,21 @@ h1 {
   background: #475569;
   transform: translateY(-2px);
 }
+.decline-button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.decline-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(220, 38, 38, 0.25);
+}

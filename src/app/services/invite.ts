@@ -32,4 +32,10 @@ acceptInvite(inviteId: number): Observable<InviteResponse> {
     {}
   );
 }
+declineInvite(inviteId: number): Observable<InviteResponse> {
+  return this.http.post<InviteResponse>(
+    `${this.apiUrl}/api/invite/${inviteId}/decline`,
+    {}
+  );
+}
 }
