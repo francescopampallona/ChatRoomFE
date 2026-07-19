@@ -6,6 +6,7 @@ import { authGuard } from './guards/auth-guard';
 import { CreateRoomComponent } from './pages/create-room/create-room';
 import { InviteUserComponent } from './pages/invite-user/invite-user';
 import { MyInvitesComponent } from './pages/my-invites/my-invites';
+import { RoomChatComponent } from './pages/room-chat/room-chat';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,11 @@ export const routes: Routes = [
    path: 'rooms/:roomId/invite',
    component: InviteUserComponent,
    canActivate: [authGuard]
+  },
+  {
+  path: 'rooms/:roomId/chat',
+  component: RoomChatComponent,
+  canActivate: [authGuard]
   },
   {
   path: 'invites',

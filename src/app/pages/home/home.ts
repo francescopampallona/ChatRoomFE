@@ -120,4 +120,12 @@ goToInvites(): void {
   this.router.navigate(['/invites']);
 }
 
+openChat(roomId: number): void {
+  this.router.navigate([
+    '/rooms',
+    roomId,
+    'chat'
+  ]);
+}
+
 }

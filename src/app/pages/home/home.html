@@ -64,6 +64,7 @@
           <button  *ngIf="isOwner(room) && room.type=='PRIVATE'" class="invite-room-button" (click)="goToInvite(room.id)">
             Invita utente
           </button>
+          <button class="open-chat-button" (click)="openChat(room.id)">Apri chat</button>
 
         </div>
       </div>
